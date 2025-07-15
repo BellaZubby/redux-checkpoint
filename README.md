@@ -1,12 +1,59 @@
-# React + Vite
+# React Redux ToDo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and efficient ToDo application built with **React** and **Redux** for state management. Users can add tasks, edit them, filter by completion status, and delete task.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Add new tasks with a description
+- Edit existing tasks
+- Mark tasks as completed or not completed
+- Filter tasks by status: All / Done / Not Done
+- Deletion of tasks
+- Global state management using Redux
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Components
+
+### `AddTask`
+- Have a controlled input to enter a task
+- Dispatch an action to Redux to add the task
+- Automatically generate an ID and set isDone to false.
+
+### `ListTask`
+- Pull all tasks from Redux state
+- Display them using the Task component
+- Include filter buttons: “All”, “Done”, “Not Done”
+- Respond dynamically when the user selects a filter
+
+
+### `Task`
+- Show task description and completion status
+- Allow toggling of isDone
+- Allow inline editing of task description
+- Allow for deletion of task
+- Dispatch updates to Redux
+
+
+---
+
+## Technologies Used
+
+- React (Functional Components)
+- Redux Toolkit
+- React Redux
+- Tailwind css for styling
+
+---
+
+## How It Works
+
+- Tasks are stored in Redux with attributes:
+  - `id`: unique identifier
+  - `description`: task details
+  - `isDone`: boolean for completion status
+- On app load, task list is pulled from Redux store.
+- State updates trigger re-render and UI changes.
+

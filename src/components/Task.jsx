@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { toggleTask, editTask } from '../JS/reducers/taskSlice'
+import { toggleTask, editTask, deleteTask } from '../JS/reducers/taskSlice'
 
 
 const Task = ({task}) => {
-
+    // needed to dispatch action to store to update state of application after the edit of a description.
     const dispatch = useDispatch();
     const [isEditing, setIsEditing] = useState(false);
     const [newDescription, setNewDescription] = useState(task.description);
@@ -23,6 +23,13 @@ const Task = ({task}) => {
         }
         setIsEditing(false);
     }
+
+    // Added an extra feature of being able to delete a task
+    const handleDelete = () => {
+      // this line of code dispatches the action to remove from the task list the task that matches the passed in task.id
+      dispatch(deleteTask(task.id));
+    }
+
   return (
      <li className="flex items-center justify-between p-2 border rounded bg-white shadow">
       <div className="flex items-center gap-2">
@@ -50,7 +57,9 @@ const Task = ({task}) => {
         )}
       </div>
 
-      <div className="flex items-center gap-1">
+      {/* div to hold the delete and edit button side by side */}
+      <div className='flex items-center justify-center gap-2'>
+         <div className="flex items-center gap-1">
         {isEditing ? (
           <button
             onClick={handleEdit}
@@ -67,6 +76,14 @@ const Task = ({task}) => {
           </button>
         )}
       </div>
+      <div>
+        <button onClick={handleDelete}  className="text-red-500 hover:text-red-700 text-sm">
+          Delete
+        </button>
+      </div>
+      </div>
+
+     
     </li>
   )
 }

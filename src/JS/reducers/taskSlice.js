@@ -29,11 +29,14 @@ const taskSlice = createSlice({
             const {id, description} = action.payload;
             const task = state.list.find((t) => t.id === id);
             if (task) task.description = description
+        },
+        deleteTask: (state, action) => {
+            state.list = state.list.filter((task) => task.id !== action.payload);
         }
     }
 })
 
-export const {addTask, toggleTask, editTask} = taskSlice.actions;
+export const {addTask, toggleTask, editTask, deleteTask} = taskSlice.actions;
 
 // default exports the reducer anonymously
 export default taskSlice.reducer

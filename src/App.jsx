@@ -4,7 +4,7 @@ const App = () => {
  
   return (
     <>
-     <h1>Redux</h1>
+     <h1 className="text-center text-3xl font-bold mt-12">TO DO APP</h1>
      <AddTask/>
      <ListTask/>
     </>
